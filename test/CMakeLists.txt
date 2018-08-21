@@ -41,6 +41,8 @@ else()
     # download and build googletest
     include(ExternalProject)
 
+    find_package(Threads REQUIRED)
+
     # add gtest.
     ExternalProject_Add(
         googletest
@@ -63,6 +65,7 @@ else()
     include_directories(${source_dir}/googletest/include)
     target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest_main.a)
     target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest.a)
+    target_link_libraries(gtest_ex Threads::Threads)
     #target_include_directories(gtest_ex PUBLIC ${source_dir}/include)
     #target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest.a)
 
