@@ -50,8 +50,8 @@ else()
     add_executable(gtest_ex example.cpp)
 
     add_dependencies(gtest_ex gtest)
-    target_include_directories(gtest_ex ${source_dir}/include)
-    target_link_libraries(gtest_ex PUBLIC ${binary_dir}/googlemock/gtest/libgtest.a)
+    target_include_directories(gtest_ex PUBLIC ${source_dir}/include)
+    target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest.a)
 
     enable_testing()
     add_test(NAME gtest_ex
