@@ -8,7 +8,7 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             # install clang and ninja
-            - clang++-6
+            - clang++
             - ninja-build
             
 script:
