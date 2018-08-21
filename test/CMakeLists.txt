@@ -38,10 +38,8 @@ if(CMAKE_CXX_XOMPILER_ID MATCHES "MSVC")
 	target_link_libraries(example gtest_main)
 	add_test(NAME example_test COMMAND example)
 else()
+    # download and build googletest
     include(ExternalProject)
-
-    # set default ExternalProject root directory.
-    SET_DIRECTORY_PROPERTIES(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/third_party)
 
     # add gtest.
     ExternalProject_Add(
@@ -51,25 +49,20 @@ else()
         # BUILD_BYPRODUCTS ${binary_dir}/googlemock/gtest/libgtest.a
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
         INSTALL_COMMAND ""
-        LOG_DOWNLOAD ON
-        LOG_CONFIGURE ON
-        LOG_BUILD ON
     )
 
     ExternalProject_Get_Property(googletest source_dir binary_dir)
-    # specify the include dir
-    set(GTEST_INCLUDE_DIR ${source_dir}/include)
 
-    # library
-    set(GTEST_LIBRARY_PATH ${binary_dir}/$CMAKE_FIND_LIBRARY_PREFIXES}gtest.a)
-    set(GTEST_LIBRARY gtest)
-    add_library(${GTEST_LIBRARY} UNKNOWN IMPORTED)
-    set_property(TARGET ${GTEST_LIBRARY} PROPERTY IMPORTED_LOCATION
-        ${GTEST_LIBRARY_PATH} )
-    add_dependencies(${GTEST_LIBRARY} googletest)
+    add_compile_options(-v)
 
+    # define a test
     add_executable(gtest_ex example.cpp)
 
+    # include and link with gootletest.
+    add_dependencies(gtest_ex googletest)
+    include_directories(${source_dir}/googletest/include)
+    target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest_main.a)
+    target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest.a)
     #target_include_directories(gtest_ex PUBLIC ${source_dir}/include)
     #target_link_libraries(gtest_ex ${binary_dir}/googlemock/gtest/libgtest.a)
 
