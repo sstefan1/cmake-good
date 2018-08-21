@@ -8,10 +8,10 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             # install clang and ninja
-            - ninja-build
-            - clang
+            #- ninja-build
+            #- clang
             
 script:
-    - cmake -G Ninja .
-    - ninja
+    - cmake .
+    - make
     - ctest
