@@ -2,11 +2,11 @@ dist: trusty
 sudo: false
 language: cpp
 
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
+# addons:
+    # apt:
+        # sources:
+            # - ubuntu-toolchain-r-test
+        # packages:
             # install clang and ninja
             #- ninja-build
             #- clang
@@ -14,4 +14,6 @@ addons:
 script:
     - cmake .
     - make
+    - cd test
     - ctest
+    - ./gtest_ex

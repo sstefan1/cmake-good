@@ -42,6 +42,7 @@ else()
     ExternalProject_Add(gtest
         GIT_REPOSITORY https://github.com/google/googletest/
         #SVN_REPOSITORY http://googletest.googlecode.com/svn/trunk/
+        # BUILD_BYPRODUCTS ${binary_dir}/googlemock/gtest/libgtest.a
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
         INSTALL_COMMAND ""
     )
