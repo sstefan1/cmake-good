@@ -31,8 +31,8 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(example example.cpp)
-target_link_libraries(example gtest_main)
+add_executable(gtest_ex example.cpp)
+target_link_libraries(gtest_ex gtest_main)
 add_test(NAME example_test COMMAND example)
 
 ############################################
