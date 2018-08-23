@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"    
 
-TEST(FirstTest, TrueTest) { EXPECT_TRUE(2 == 1); }
+TEST(FirstTest, TrueTest) { EXPECT_TRUE(1 == 1); }
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
